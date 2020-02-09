@@ -9,10 +9,13 @@ class RecipientController {
       cpf: Yup.string().required(),
       street: Yup.string().required(),
       number: Yup.string().required(),
-      complement: Yup.string().required(),
+      complement: Yup.string(),
+      neighborhood: Yup.string().required(),
       state: Yup.string().required(),
       city: Yup.string().required(),
-      cep: Yup.string().required(),
+      cep: Yup.string()
+        .required()
+        .length(8),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -33,6 +36,7 @@ class RecipientController {
       street,
       number,
       complement,
+      neighborhood,
       state,
       city,
       cep,
@@ -45,6 +49,7 @@ class RecipientController {
       street,
       number,
       complement,
+      neighborhood,
       city,
       state,
       cep,
@@ -58,9 +63,10 @@ class RecipientController {
       street: Yup.string(),
       number: Yup.string(),
       complement: Yup.string(),
+      neighborhood: Yup.string(),
       state: Yup.string(),
       city: Yup.string(),
-      cep: Yup.string(),
+      cep: Yup.string().length(8),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -85,6 +91,7 @@ class RecipientController {
       street,
       number,
       complement,
+      neighborhood,
       state,
       city,
       cep,
@@ -97,6 +104,7 @@ class RecipientController {
       street,
       number,
       complement,
+      neighborhood,
       city,
       state,
       cep,
