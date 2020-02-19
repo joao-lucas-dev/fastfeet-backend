@@ -79,6 +79,14 @@ class DelivererController {
       avatar_id,
     });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await Deliverer.destroy({ where: { id } });
+
+    return res.json();
+  }
 }
 
 export default new DelivererController();

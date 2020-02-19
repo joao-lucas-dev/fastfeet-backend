@@ -23,5 +23,6 @@ routes.post('/avatars', upload.single('file'), AvatarController.store);
 routes.get('/deliveres', DelivererController.index);
 routes.post('/deliveres', DelivererController.store);
 routes.put('/deliveres/:id', DelivererController.update);
+routes.delete('/deliveres/:id', DelivererController.delete);
 
 export default routes;
