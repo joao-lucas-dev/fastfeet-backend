@@ -1,8 +1,24 @@
 import * as Yup from 'yup';
 
+import Avatar from '../models/Avatar';
 import Deliverer from '../models/Deliverer';
 
 class DelivererController {
+  async index(req, res) {
+    const delieverers = await Deliverer.findAll({
+      attributes: ['id', 'name', 'email', 'avatar_id'],
+      include: [
+        {
+          model: Avatar,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
+    return res.json(delieverers);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
