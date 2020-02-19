@@ -21,5 +21,6 @@ routes.put('/recipients/:id', RecipientController.update);
 routes.post('/avatars', upload.single('file'), AvatarController.store);
 
 routes.post('/deliveres', DelivererController.store);
+routes.put('/deliveres/:id', DelivererController.update);
 
 export default routes;

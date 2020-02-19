@@ -27,6 +27,42 @@ class DelivererController {
 
     return res.json({ id, name, email });
   }
+
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      email: Yup.string()
+        .email()
+        .required(),
+      avatar_id: Yup.number(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails!' });
+    }
+
+    const { id } = req.params;
+    const { email } = req.body;
+
+    const deliverer = await Deliverer.findByPk(id);
+
+    if (deliverer.email !== email) {
+      const checkEmailDeliverer = await Deliverer.findOne({ where: { email } });
+
+      if (checkEmailDeliverer) {
+        return res.status(400).json({ error: 'Deliverer already exists!' });
+      }
+    }
+
+    const { name, avatar_id } = await deliverer.update(req.body);
+
+    return res.json({
+      id,
+      name,
+      email,
+      avatar_id,
+    });
+  }
 }
 
 export default new DelivererController();
