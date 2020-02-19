@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import DelivererController from './app/controllers/DelivererController';
 import RecipientController from './app/controllers/RecipientController';
 import SessionController from './app/controllers/SessionController';
 import authMiddleware from './app/middlewares/auth';
@@ -12,5 +13,7 @@ routes.use(authMiddleware);
 
 routes.post('/recipients', RecipientController.store);
 routes.put('/recipients/:id', RecipientController.update);
+
+routes.post('/deliveres', DelivererController.store);
 
 export default routes;
