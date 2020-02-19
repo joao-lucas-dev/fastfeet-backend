@@ -1,11 +1,12 @@
 import Sequelize from 'sequelize';
 
+import Avatar from '../app/models/Avatar';
 import Deliverer from '../app/models/Deliverer';
 import Recipient from '../app/models/Recipient';
 import User from '../app/models/User';
 import databaseConfig from '../config/database';
 
-const models = [User, Recipient, Deliverer];
+const models = [User, Recipient, Deliverer, Avatar];
 class Database {
   constructor() {
     this.init();
