@@ -3,6 +3,25 @@ import * as Yup from 'yup';
 import Recipient from '../models/Recipient';
 
 class RecipientController {
+  async index(req, res) {
+    const recipients = await Recipient.findAll({
+      attributes: [
+        'id',
+        'name',
+        'cpf',
+        'street',
+        'number',
+        'complement',
+        'neighborhood',
+        'state',
+        'city',
+        'cep',
+      ],
+    });
+
+    return res.json(recipients);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
