@@ -131,6 +131,14 @@ class RecipientController {
       cep,
     });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await Recipient.destroy({ where: { id } });
+
+    return res.json();
+  }
 }
 
 export default new RecipientController();
